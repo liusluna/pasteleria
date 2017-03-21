@@ -6,10 +6,10 @@ package model;
 public class Usuario {
 	private String user;
 	private String pass;
+	private int usuariosId;
 	
-	public Usuario(String user, String pass){
-		this.user=user;
-		this.pass=pass;
+	public Usuario(){
+
 	}
 
 	public String getUser() {
@@ -26,6 +26,14 @@ public class Usuario {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	public int getUsuariosId() {
+		return usuariosId;
+	}
+
+	public void setUsuariosId(int usuariosId) {
+		this.usuariosId = usuariosId;
 	}
 	
 	

@@ -8,9 +8,10 @@ package model;
 
 public class Cliente {
 	private String cliente;
+	private int clientesId;
 	
-	public Cliente (String cliente){
-		this.cliente = cliente;
+	public Cliente (){
+		
 	}
 
 	public String getCliente() {
@@ -19,6 +20,14 @@ public class Cliente {
 
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
+	}
+
+	public int getClientesId() {
+		return clientesId;
+	}
+
+	public void setClientesId(int clientesId) {
+		this.clientesId = clientesId;
 	}
 	
 	
