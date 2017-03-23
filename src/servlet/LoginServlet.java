@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.UsuarioDao;
+import model.Usuario;
+
 import java.util.ArrayList;
 
 /**
@@ -35,28 +38,13 @@ public class LoginServlet extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String contra = request.getParameter("contra");
 
-		
-		Usuarios usuarios = new Usuarios();
-		/*usuarios.addUsuario("1", "1");
-		usuarios.addUsuario("Rafa", "Chagolla");
-		usuarios.addUsuario("Jose", "Nador");
-		usuarios.addUsuario("Sergio", "Galvan");
-		usuarios.addUsuario("Jose", "Nabas");
-		*/
-		
-		if(usuarios.getNumero()==0){
-			ArrayList<String> salida = new ArrayList<String>();
-			salida.add("No hay conexión a la base de datos");
-			salida.add("o no hay usuarios registrados");
-			salida.add("Favor de contactar al Administrador");
-			request.setAttribute("error", salida);
-			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}
-			
-		
+		UsuarioDao udao =new UsuarioDao();
+		Usuario user = new Usuario();
+		user.setUser(usuario);
+		user.setPass(contra);
 
 
-		if (usuarios.isvalid(usuario, contra)){
+		if (udao.esValido(user)){
 			//System.out.println(request.getParameterNames());
 			HttpSession misesion = request.getSession();
 			misesion.setAttribute("usuario", usuario);

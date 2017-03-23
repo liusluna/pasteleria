@@ -16,7 +16,7 @@ public class UsuarioDao {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static Boolean login(Usuario usuario){
+	public  Boolean esValido(Usuario usuario){
 		Statement stmt = null; 
 		String searchQuery = "select * from usuarios where usuario='" + usuario.getUser()  + "' AND password='" + usuario.getPass() + "'";
 		try { //connect to DB 
