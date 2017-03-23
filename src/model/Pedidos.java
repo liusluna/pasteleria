@@ -5,7 +5,7 @@ public class Pedidos {
 	private java.util.Date fechapedio;
 	private java.util.Date fechaentrega;
 	private String nombre;
-	private int entregasId;
+	private int pedidosId;
 
 	public Pedidos() {
 		// TODO Auto-generated constructor stub
@@ -35,12 +35,12 @@ public class Pedidos {
 		this.nombre = nombre;
 	}
 
-	public int getEntregasId() {
-		return entregasId;
+	public int getpedidosId() {
+		return pedidosId;
 	}
 
-	public void setEntregasId(int entregasId) {
-		this.entregasId = entregasId;
+	public void setpedidosId(int entregasId) {
+		this.pedidosId = entregasId;
 	}
     
 	

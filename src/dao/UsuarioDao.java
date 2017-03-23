@@ -32,7 +32,7 @@ public class UsuarioDao {
 				return true;
 			}
 		 } catch (Exception ex) { 
-			 System.out.println("Log In failed: An Exception has occurred! " + ex); 
+			 System.out.println("Usuario dao: An Exception has occurred! " + ex); 
 			 return (false);
 		 } 
 			
@@ -41,6 +41,7 @@ public class UsuarioDao {
 				try {
 					rs.close();
 				} catch (Exception e) {
+					System.out.println("Usuario dao: An Exception has occurred! " + e);
 				}
 				rs = null;
 			}
@@ -48,6 +49,7 @@ public class UsuarioDao {
 				try {
 					stmt.close();
 				} catch (Exception e) {
+					System.out.println("Usuario dao: An Exception has occurred! " + e);
 				}
 				stmt = null;
 			}
