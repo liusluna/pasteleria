@@ -53,27 +53,27 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="app.jsp">Inicio</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Alumnos <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="Alumnos?operacion=muestra&">Mostrar</a></li>
+                  <li><a href="Cliente?operacion=muestra&">Mostrar</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="addAlumno.jsp">Alta</a></li>
+                  <li><a href="addCliente.jsp">Alta</a></li>
                 </ul>
               </li>
                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Horarios <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="Horarios?operacion=muestra&">Mostrar</a></li>
+                  <li><a href="Producto?operacion=muestra&">Mostrar</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="addHorario.jsp">Alta</a></li>
+                  <li><a href="addProducto.jsp">Alta</a></li>
                 </ul>
               </li> 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Materias <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="Materias?operacion=muestra&">Mostrar</a></li>
+                  <li><a href="Pedido?operacion=muestra&">Mostrar</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="addMateria.jsp">Alta</a></li>
+                  <li><a href="addPedido.jsp">Alta</a></li>
                 </ul>
               </li>     
               <li><a href="#aboutModal" data-toggle="modal" data-target="#myModal">Acerca de</a></li>

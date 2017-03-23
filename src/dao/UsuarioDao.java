@@ -18,7 +18,7 @@ public class UsuarioDao {
 	
 	public  Boolean esValido(Usuario usuario){
 		Statement stmt = null; 
-		String searchQuery = "select * from usuarios where usuario='" + usuario.getUser()  + "' AND password='" + usuario.getPass() + "'";
+		String searchQuery = "select * from USUARIOS where usuario='" + usuario.getUser()  + "' AND password='" + usuario.getPass() + "'";
 		try { //connect to DB 
 			currentCon = dbConexion.getConnection(); 
 			stmt=currentCon.createStatement(); 
@@ -50,13 +50,6 @@ public class UsuarioDao {
 				} catch (Exception e) {
 				}
 				stmt = null;
-			}
-			if (currentCon != null) {
-				try {
-					currentCon.close();
-				} catch (Exception e) {
-				}
-				currentCon = null;
 			}
 		}
 		return false;
