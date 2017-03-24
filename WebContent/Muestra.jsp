@@ -32,6 +32,9 @@
 	}else if(tipo.equals("pedidos")){
 		titulo="Pedidos";
 		tipo="pedidos";
+	}else if(tipo.equals("info")){
+		titulo="Información";
+		tipo="info";
 	}else
 		titulo="Sin datos";
 	
@@ -74,6 +77,28 @@
 
 <div class="jumbotron">
         <h4><%= titulo %></h4>
+     <%
+      if(tipo.equals("info")){
+    	  
+		try
+        {
+		ArrayList<String> info = (ArrayList<String>)request.getAttribute("info");
+
+		for (String str : info ){			
+		%>
+		<p>
+		<%= str %>
+		</p>
+		<br>
+		<%
+	
+		}
+
+		}catch (Exception es) {
+			System.err.println("Error en desconocido en la pagina de muestra\n" + es.getMessage());
+		}
+      }else{
+	%>
 	<table class="table table-striped table-hover">
 		<%
         if(tipo.equals("clientes")){
@@ -106,7 +131,7 @@
 		        %>
 			<tr>
 				<td class="actions-row"><a class="btn text-danger" data-toggle="confirmation" data-title="Desea Realmemte Eliminar" 
-				href="Alumnos?operacion=eliminar&alumno=<%= cliente.getClientesId() %>"
+				href="Cliente?operacion=eliminar&cliente=<%= cliente.getClientesId() %>"
 				data-placement="top" title="Eliminar cliente">
 						<span class="glyphicon glyphicon-remove"></span>
 				</a></td>
@@ -250,6 +275,11 @@
 	  </ul>
 	</nav>
 	<!-- Termina paginacion -->
+   <%
+   		//termina info
+    }
+   %>
+	
   </div>
   
 

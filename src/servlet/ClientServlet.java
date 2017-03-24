@@ -64,8 +64,61 @@ public class ClientServlet extends HttpServlet {
 				
 		//fin mostrar
 		}else if(request.getParameter("operacion").equals("eliminar")){
+			int id = Integer.parseInt(request.getParameter("cliente"));
+			ClienteDao cdao = new ClienteDao();
+			
+			if (cdao.borra(id) ){
+				ArrayList<String> salida = new ArrayList<String>();
+				salida.add("Cliente eliminado: "+id);
+				salida.add("de la base de datos");
+				request.setAttribute("info", salida);
+				request.setAttribute("tipo","info");
+				request.setAttribute("pagina","1");
+				request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+			} else {
+				ArrayList<String> salida = new ArrayList<String>();
+				salida.add("Cliente NO eliminado");
+				salida.add("hubo un error eliminar el usuario id: "+id);
+				request.setAttribute("info", salida);
+				request.setAttribute("tipo","info");
+				request.setAttribute("pagina","1");
+				request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+			}
+			
 			
 		}else if(request.getParameter("operacion").equals("agregar")){
+			//int id = Integer.parseInt(request.getParameter("cliente"));
+			ClienteDao cdao = new ClienteDao();
+			Cliente cliente = new Cliente();
+			
+			cliente.setRfc(request.getParameter("rfc"));
+			cliente.setRazon(request.getParameter("razon"));
+			cliente.setNombre(request.getParameter("nombre"));
+			cliente.setApmaterno(request.getParameter("apmaterno"));
+			cliente.setAppaterno(request.getParameter("appaterno"));
+			cliente.setDireccion(request.getParameter("direccion"));
+			cliente.setColonia(request.getParameter("colonia"));
+			cliente.setMunicipio(request.getParameter("municipio"));
+			cliente.setEstado(request.getParameter("estado"));
+			
+			
+			if (cdao.agrega(cliente) ){
+				ArrayList<String> salida = new ArrayList<String>();
+				salida.add("Cliente agregado: ");
+				salida.add("de la base de datos");
+				request.setAttribute("info", salida);
+				request.setAttribute("tipo","info");
+				request.setAttribute("pagina","1");
+				request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+			} else {
+				ArrayList<String> salida = new ArrayList<String>();
+				salida.add("Cliente NO agregado");
+				salida.add("hubo un error al agregar cliente ");
+				request.setAttribute("info", salida);
+				request.setAttribute("tipo","info");
+				request.setAttribute("pagina","1");
+				request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+			}
 			
 		}else{
 			Enumeration params = request.getParameterNames(); 

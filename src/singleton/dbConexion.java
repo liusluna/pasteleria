@@ -2,6 +2,7 @@ package singleton;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -25,5 +26,17 @@ public class dbConexion {
 	     }
 	     return con;
 	   }
+	   
+	   public  static int getResultSetRowCount(ResultSet resultSet) {
+			int size = 0;
+			try {
+				resultSet.last();
+				size = resultSet.getRow();
+				resultSet.beforeFirst();
+			} catch (Exception ex) {
+				return 0;
+			}
+			return size;
+		}
 
 }
