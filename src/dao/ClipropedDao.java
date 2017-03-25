@@ -3,9 +3,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.jdbc.PreparedStatement;
 
 import model.Cliproped;
 import singleton.dbConexion;
@@ -67,5 +70,53 @@ public class ClipropedDao {
 		
 	    return lista;
 	}
-
+	
+	//  Tipo: 1 cliente.  2 pedidos, 3 productos
+	public Boolean dropCascadeClient(int id, int tipo){
+		Statement stmt = null; 
+		/*
+		if (this.getOne(id).equals(null)){
+			return false;
+		}
+		*/
+		try { //connect to DB 
+			currentCon = dbConexion.getConnection(); 
+			//stmt=currentCon.createStatement(); 
+			//rs = stmt.executeQuery(searchQuery); 
+			
+					
+			String deleteSQL = "DELETE FROM CLIENTES WHERE CLIENTE_ID = ? ;";
+			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			
+		}catch (SQLException e) {
+				System.err.println("SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());
+				return (false);
+		} catch (Exception ex) { 
+			 System.out.println("Cliente dao borra: An Exception has occurred! " + ex); 
+			 return (false);
+		 } 
+			
+		finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					System.out.println("Cliente dao borra: An Exception has occurred! " + e);
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					System.out.println("Cliente dao: An Exception has occurred! " + e);
+				}
+				stmt = null;
+			}
+		}	
+		
+		return true;
+	}
 }
