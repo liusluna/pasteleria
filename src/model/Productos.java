@@ -1,13 +1,13 @@
 package model;
 
-public class Producto {
+public class Productos {
 	private String nombre;
 	private Double costo;
 	private Double venta; 
 	private String descripcion;
 	private int productosId;
 	
-	public Producto() {
+	public Productos() {
 		// TODO Auto-generated constructor stub
 	}
 	

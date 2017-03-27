@@ -1,7 +1,7 @@
 <%@page import="java.util.*"%>
 <%@page import="javax.persistence.*"%>
 <%@page import="model.Cliente"%>
-<%@page import="model.Producto"%>
+<%@page import="model.Productos"%>
 <%@page import="model.Pedidos"%>
 
 <%
@@ -148,17 +148,18 @@
 		        }
 				}
 
-			}else if( tipo.equals("producto")){
-			        	List<Producto> arra = (List<Producto>)misesion.getAttribute("producto");
+			}else if( tipo.equals("productos")){
+			        	List<Productos> arra = (List<Productos>)misesion.getAttribute("productos");
 			%>
 		
 		<thead>
 			<tr>
 				<th></th>
 				<th>ID</th>
-				<th>Hora</th>
-				<th>Aula</th>
-				<th>Materia</th>
+				<th>Nombre</th>
+				<th>P. Costo</th>
+				<th>P. Venta</th>
+				<th>Descripcion</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -168,19 +169,20 @@
 				for (int i = registroInferior(maxxpag,
 							registrosuperior(arra.size(), pagina, maxxpag)); i < registrosuperior(arra.size(), pagina,
 									maxxpag); i++) {
-					Producto producto = (Producto) arra.get(i);
+					Productos producto = (Productos) arra.get(i);
 						//System.out.println("|"+alumno.getAlumnosId()+" | "+alumno.getNombre()+" | "+alumno.getAppaterno()+" | "+alumno.getApmaterno()+" | "+alumno.getDireccion()+" | "+alumno.getColonia()+" | "+alumno.getMunicipio()+" | "+alumno.getEstado()+"|");
 			%>
 			<tr>
 				<td class="actions-row"><a class="text-danger"
-					href="Horarios?operacion=eliminar&horario=<%=producto.getProductosId()%>"
+					href="Horarios?operacion=eliminar&producto=<%=producto.getProductosId()%>"
 					data-toggle="tooltip" data-placement="top" title="Eliminar horario">
 						<span class="glyphicon glyphicon-remove"></span>
 				</a></td>
 				<td><%=producto.getProductosId()%></td>
-				<td><%=producto%></td>
-				<td><%=producto%></td>
-				<td><%=producto%></td>
+				<td><%=producto.getNombre()%></td>
+				<td><%=producto.getCosto()%></td>
+				<td><%=producto.getVenta()%></td>
+				<td><%=producto.getDescripcion()%></td>
 			</tr>
 			<%
 				}

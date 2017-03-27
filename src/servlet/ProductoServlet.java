@@ -1,12 +1,9 @@
 package servlet;
 
-import model.Cliente;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.io.IOException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,19 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ClienteDao;
+import dao.ProductoDao;
+import model.Productos;
 
 /**
- * Servlet implementation class ClientServlet
+ * Servlet implementation class ProductoServlet
  */
-@WebServlet("/Cliente")
-public class ClientServlet extends HttpServlet {
+@WebServlet("/Producto")
+public class ProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClientServlet() {
+    public ProductoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,25 +45,25 @@ public class ClientServlet extends HttpServlet {
 		if (request.getParameter("operacion").equals("muestra")){
 		
 			
-			ClienteDao cdao = new ClienteDao();
-			List<Cliente> listaClientes = null;
+			ProductoDao cdao = new ProductoDao();
+			List<Productos> listaProductos = null;
 			try {
-				listaClientes = cdao.getAll();
+				listaProductos = cdao.getAll();
 			} catch (Exception e) {
 				// TODO: handle exception
-				System.out.println("Error al intentar listar los clientes: " + e.getMessage());
+				System.out.println("Error al intentar listar los productos: " + e.getMessage());
 
 			} 
-				misesion.setAttribute("clientes", listaClientes);
-				request.setAttribute("tipo","clientes");
+				misesion.setAttribute("productos", listaProductos);
+				request.setAttribute("tipo","productos");
 				request.setAttribute("pagina","1");
 				request.getRequestDispatcher("Muestra.jsp").forward(request, response);
 			
 				
 		//fin mostrar
 		}else if(request.getParameter("operacion").equals("eliminar")){
-			int id = Integer.parseInt(request.getParameter("cliente"));
-			ClienteDao cdao = new ClienteDao();
+			int id = Integer.parseInt(request.getParameter("producto"));
+			ProductoDao cdao = new ProductoDao();
 			
 			if (cdao.borra(id) ){
 				ArrayList<String> salida = new ArrayList<String>();
@@ -87,22 +85,17 @@ public class ClientServlet extends HttpServlet {
 			
 			
 		}else if(request.getParameter("operacion").equals("agregar")){
-			//int id = Integer.parseInt(request.getParameter("cliente"));
-			ClienteDao cdao = new ClienteDao();
-			Cliente cliente = new Cliente();
+			ProductoDao cdao = new ProductoDao();
+			Productos producto = new Productos();
 			
-			cliente.setRfc(request.getParameter("rfc"));
-			cliente.setRazon(request.getParameter("razon"));
-			cliente.setNombre(request.getParameter("nombre"));
-			cliente.setApmaterno(request.getParameter("apmaterno"));
-			cliente.setAppaterno(request.getParameter("appaterno"));
-			cliente.setDireccion(request.getParameter("direccion"));
-			cliente.setColonia(request.getParameter("colonia"));
-			cliente.setMunicipio(request.getParameter("municipio"));
-			cliente.setEstado(request.getParameter("estado"));
+			producto.setNombre(request.getParameter("nombre"));
+			producto.setDescripcion(request.getParameter("descripcion"));
+			producto.setCosto(Double.parseDouble(request.getParameter("costo")));
+			producto.setVenta(Double.parseDouble(request.getParameter("venta")));
 			
 			
-			if (cdao.agrega(cliente) ){
+			
+			if (cdao.agrega(producto) ){
 				ArrayList<String> salida = new ArrayList<String>();
 				salida.add("Cliente agregado: ");
 				salida.add("de la base de datos");
@@ -129,6 +122,7 @@ public class ClientServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("app.jsp").forward(request, response);
 		}
+			
 		
 	}
 
