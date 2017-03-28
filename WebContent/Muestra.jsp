@@ -174,8 +174,8 @@
 			%>
 			<tr>
 				<td class="actions-row"><a class="text-danger"
-					href="Horarios?operacion=eliminar&producto=<%=producto.getProductosId()%>"
-					data-toggle="tooltip" data-placement="top" title="Eliminar horario">
+					href="Producto?operacion=eliminar&producto=<%=producto.getProductosId()%>"
+					data-toggle="tooltip" data-placement="top" title="Eliminar Producto">
 						<span class="glyphicon glyphicon-remove"></span>
 				</a></td>
 				<td><%=producto.getProductosId()%></td>

@@ -26,19 +26,19 @@
 			
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="appaterno">Descripci&oacute;n</label>
+				<label class="col-md-4 control-label" for="descripcion">Descripci&oacute;n</label>
 				<div class="col-md-4">
-					<input id="nombre" name="appaterno" placeholder="Apellido Paterno"
+					<input id="descripcion" name="descripcion" placeholder="Apellido Paterno"
 						class="form-control input-md"  type="text" required  pattern="[A-Za-z0-9#.\s]{3,50}" maxlength="50"> <span
-						class="help-block">Escribe el Apellido Paterno</span>
+						class="help-block">Escribe la descripcion del producto</span>
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="apmaterno">Precio de Venta</label>
+				<label class="col-md-4 control-label" for="venta">Precio de Venta</label>
 				<div class="col-md-4">
-					<input id="nombre" name="apmaterno" placeholder="Venta 0.0"
+					<input id="venta" name="venta" placeholder="Venta 0.0"
 						class="form-control input-md"  type="number" required  pattern="[0-9]+([,\.][0-9]+)?" step="0.01"> <span
 						class="help-block">Escribe el Precio de Venta</span>
 				</div>
@@ -46,9 +46,9 @@
 			
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="direccion">Precio de Costo</label>
+				<label class="col-md-4 control-label" for="costo">Precio de Costo</label>
 				<div class="col-md-4">
-					<input id="nombre" name="direccion" placeholder="Costo 0.0"
+					<input id="costo" name="costo" placeholder="Costo 0.0"
 						class="form-control input-md"  type="number" required  pattern="[0-9]+([,\.][0-9]+)?" step="0.01"> <span
 						class="help-block">Escribe el Costo del Producto</span>
 				</div>
