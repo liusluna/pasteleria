@@ -1,14 +1,17 @@
 package model;
 
+
+
 //https://coderanch.com/t/304851/databases/Java-date-MySQL-date-conversion
 public class Pedidos {
 	private java.util.Date fechapedio;
 	private java.util.Date fechaentrega;
-	private String nombre;
+	private String descripcion;
 	private int pedidosId;
-
+	
 	public Pedidos() {
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	public java.util.Date getFechapedio() {
@@ -27,20 +30,20 @@ public class Pedidos {
 		this.fechaentrega = fechaentrega;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public int getpedidosId() {
 		return pedidosId;
 	}
 
-	public void setpedidosId(int entregasId) {
-		this.pedidosId = entregasId;
+	public void setpedidosId(int pedidosId) {
+		this.pedidosId = pedidosId;
 	}
     
 	

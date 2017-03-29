@@ -38,9 +38,16 @@ public class ClipropedDao {
 				//System.out.println("- " +rs.getString(1)+ rs.getString(2));
 				Cliproped cliproped = new Cliproped();
 				cliproped.setCliproped_id(Integer.parseInt(rs.getString(1)));
-				cliproped.setProducto_id(Integer.parseInt(rs.getString(2)));
-				cliproped.setPedido_id(Integer.parseInt(rs.getString(3)));
-				cliproped.setCliente_id(Integer.parseInt(rs.getString(4)));
+				ClienteDao cdao = new ClienteDao();
+				ProductoDao pdao = new ProductoDao();
+				PedidoDao pedao =  new PedidoDao();
+				
+				cliproped.setCliente( cdao.getOne(Integer.parseInt(rs.getString(2))));
+				cliproped.setPedido(pedao.getOne(Integer.parseInt(rs.getString(3))));
+				cliproped.setProducto(pdao.getOne(Integer.parseInt(rs.getString(4))));
+				//cliproped.setProducto_id(Integer.parseInt(rs.getString(2)));
+				//cliproped.setPedido_id(Integer.parseInt(rs.getString(3)));
+				//cliproped.setCliente_id(Integer.parseInt(rs.getString(4)));
 				lista.add(cliproped);
 			}
 			
