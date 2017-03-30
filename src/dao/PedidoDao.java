@@ -41,7 +41,7 @@ public class PedidoDao {
 			while (rs.next()) {
 				//System.out.println("- " +rs.getString(1)+ rs.getString(2));
 				
-				pedido.setpedidosId(Integer.parseInt(rs.getString(1)));
+				pedido.setPedidosId(Integer.parseInt(rs.getString(1)));
 				SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); 
 				pedido.setFechapedio( formato.parse(rs.getString(2))) ;
 				pedido.setFechaentrega(formato.parse(rs.getString(3)));

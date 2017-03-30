@@ -8,7 +8,24 @@ public class Pedidos {
 	private java.util.Date fechaentrega;
 	private String descripcion;
 	private int pedidosId;
+	private Boolean estatus;
 	
+	public int getPedidosId() {
+		return pedidosId;
+	}
+
+	public void setPedidosId(int pedidosId) {
+		this.pedidosId = pedidosId;
+	}
+
+	public Boolean getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Boolean estatus) {
+		this.estatus = estatus;
+	}
+
 	public Pedidos() {
 		// TODO Auto-generated constructor stub
 		
@@ -38,13 +55,5 @@ public class Pedidos {
 		this.descripcion = descripcion;
 	}
 
-	public int getpedidosId() {
-		return pedidosId;
-	}
-
-	public void setpedidosId(int pedidosId) {
-		this.pedidosId = pedidosId;
-	}
-    
 	
 }
