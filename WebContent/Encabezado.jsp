@@ -4,7 +4,7 @@
  <%
  	
  	//Verifica sesion valida
-	HttpSession misesion = request.getSession(false);
+ 		HttpSession misesion = request.getSession(false);
 	if (misesion.getAttribute("usuario") == null) {		
 		request.getRequestDispatcher("timeout.html").forward(request, response);
 	}

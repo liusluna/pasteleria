@@ -1,6 +1,6 @@
 <%@page import="java.util.*"%>
-<%@page import="javax.persistence.*"%>
-
+<%@page import="model.*"%>
+<%@page import="dao.*"%>
 
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:directive.include file="Encabezado.jsp" />
@@ -44,7 +44,64 @@
 				</div>
 			</div>
 			
+						<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="cliente">Cliente</label>
+				<div class="col-md-4">
+					<select id="materia" name="cliente" class="form-control">
+						<% 
+						ClienteDao cdao = new ClienteDao();
+						// Abrir su try /cash / finally
+						List<Cliente> lista = null;
+						try {
+							
+							    lista = (List<Cliente>)cdao.getAll();
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println("Error al intentar listar los clientes: " + e.getMessage());
 
+						} 
+						
+						for(Cliente cliente :lista){
+						
+						%>			
+						<option value="<%= cliente.getClientesId()  %>"> <%= cliente.getRazon()%> - <%= cliente.getRfc() %> </option>
+						<% 
+						} 
+						%>
+					</select>
+				</div>
+			</div>
+			
+			
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="producto">Producto</label>
+				<div class="col-md-4">
+					<select id="materia" name="producto" class="form-control">
+						<% 
+						ProductoDao pdao = new ProductoDao();
+						// Abrir su try /cash / finally
+						List<Productos> lista2 = null;
+						try {
+							
+							    lista2 = (List<Productos>)pdao.getAll();
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println("Error al intentar listar los productos: " + e.getMessage());
+
+						} 
+						
+						for(Productos producto :lista2){
+						
+						%>			
+						<option value="<%= producto.getProductosId() %>"> <%= producto.getNombre() %> </option>
+						<% 
+						} 
+						%>
+					</select>
+				</div>
+			</div>
 
 
 			<input type="hidden" name="operacion" value="agregar">

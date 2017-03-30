@@ -1,8 +1,7 @@
 <%@page import="java.util.*"%>
-<%@page import="javax.persistence.*"%>
-<%@page import="model.Cliente"%>
-<%@page import="model.Productos"%>
-<%@page import="model.Pedidos"%>
+
+<%@page import="model.*"%>
+
 
 <%
 	String titulo="";
@@ -190,14 +189,17 @@
 
 			<%
 				} else if (tipo.equals("pedidos")) {
-					List<Pedidos> arra = (List<Pedidos>) misesion.getAttribute("pedidos");
+					List<Cliproped> arra = (List<Cliproped>) misesion.getAttribute("pedidos");
 			%>
 		
 		<thead>
 			<tr>
 				<th></th>
 				<th>ID</th>
-				<th>Materia</th>
+				<th>Descripcion</th>
+				<th>Fecha Entrega</th>
+				<th>Cliente</th>
+				<th>Producto</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -207,17 +209,20 @@
 					for (int i = registroInferior(maxxpag,
 							registrosuperior(arra.size(), pagina, maxxpag)); i < registrosuperior(arra.size(), pagina,
 									maxxpag); i++) {
-						Pedidos pedidos = (Pedidos) arra.get(i);
+						Cliproped cpp = (Cliproped) arra.get(i);
 						//System.out.println("|"+alumno.getAlumnosId()+" | "+alumno.getNombre()+" | "+alumno.getAppaterno()+" | "+alumno.getApmaterno()+" | "+alumno.getDireccion()+" | "+alumno.getColonia()+" | "+alumno.getMunicipio()+" | "+alumno.getEstado()+"|");
 			%>
 			<tr>
 				<td class="actions-row"><a class="text-danger"
-					href="Materias?operacion=eliminar&materia=<%= pedidos.getpedidosId() %>"
+					href="Pedido?operacion=eliminar&cliproped=<%= cpp.getCliproped_id() %>"
 					data-toggle="tooltip" data-placement="top" title="Eliminar materia">
 						<span class="glyphicon glyphicon-remove"></span>
 				</a></td>
-				<td><%=pedidos.getNombre() %></td>
-				<td><%=pedidos.getFechaentrega() %></td>
+				<td><%=cpp.getCliproped_id()%></td>
+				<td><%=cpp.getPedido().getDescripcion()%></td>
+				<td><%=cpp.getPedido().getFechaentrega() %></td>
+				<td><%=cpp.getCliente().getRazon() %> - <%= cpp.getCliente().getRfc() %> </td>
+				<td><%=cpp.getProducto().getNombre() %></td>
 			</tr>
 			<%
 				}
