@@ -29,7 +29,7 @@ public class ProductoDao {
 			currentCon = dbConexion.getConnection(); 
 			//stmt=currentCon.createStatement(); 
 			//rs = stmt.executeQuery(searchQuery); 
-			String selectSQL = "select PRODUCTO_ID,NOMBRE,COSTO,VENTA,DESCRIPCION from PRODUCTOS where PRODCUTO_ID = ? ;";
+			String selectSQL = "select PRODUCTO_ID,NOMBRE,COSTO,VENTA,DESCRIPCION from PRODUCTOS where PRODUCTO_ID = ? ;";
 			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, id);
 			//ResultSet rs = preparedStatement.executeQuery(selectSQL);
@@ -48,9 +48,9 @@ public class ProductoDao {
 				producto.setDescripcion(rs.getString(5));
 			}
 		}catch (SQLException e) {
-			System.err.println("SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
+			System.err.println("Producto dao SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
 		 } catch (Exception ex) { 
-			 System.out.println("Cliente dao getOne: An Exception has occurred! " + ex); 
+			 System.out.println("Producto dao getOne: An Exception has occurred! " + ex); 
 		 } 
 			
 		finally {
@@ -58,7 +58,7 @@ public class ProductoDao {
 				try {
 					rs.close();
 				} catch (Exception e) {
-					System.out.println("Cliente dao getOne: An Exception has occurred! " + e);
+					System.out.println("Producto dao  getOne: An Exception has occurred! " + e);
 				}
 				rs = null;
 			}
@@ -66,7 +66,7 @@ public class ProductoDao {
 				try {
 					stmt.close();
 				} catch (Exception e) {
-					System.out.println("Cliente dao getOne: An Exception has occurred! " + e);
+					System.out.println("Producto dao getOne: An Exception has occurred! " + e);
 				}
 				stmt = null;
 			}

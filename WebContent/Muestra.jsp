@@ -200,6 +200,7 @@
 				<th>Fecha Entrega</th>
 				<th>Cliente</th>
 				<th>Producto</th>
+				<th>Entregado</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -214,8 +215,8 @@
 			%>
 			<tr>
 				<td class="actions-row"><a class="text-danger"
-					href="Pedido?operacion=eliminar&cliproped=<%= cpp.getCliproped_id() %>"
-					data-toggle="tooltip" data-placement="top" title="Eliminar materia">
+					href="Pedido?operacion=eliminar&pedido=<%= cpp.getPedido().getPedidosId() %>"
+					data-toggle="tooltip" data-placement="top" title="Eliminar Pedido">
 						<span class="glyphicon glyphicon-remove"></span>
 				</a></td>
 				<td><%=cpp.getCliproped_id()%></td>
@@ -223,6 +224,28 @@
 				<td><%=cpp.getPedido().getFechaentrega() %></td>
 				<td><%=cpp.getCliente().getRazon() %> - <%= cpp.getCliente().getRfc() %> </td>
 				<td><%=cpp.getProducto().getNombre() %></td>
+				
+				<td class="actions-row">
+				<%
+				 
+				//System.out.println("Desc "+cpp.getPedido().getDescripcion()+" Boleano " + cpp.getPedido().getEstatus());
+				 if (cpp.getPedido().getEstatus()){ 
+					 
+				 %>
+						<span class="glyphicon glyphicon-thumbs-up" title="Pedido ya Entregado"></span>
+				<%
+				 }else{
+					 
+				 %>
+					<a class="text-warning"
+					href="Pedido?operacion=actualiza&pedido=<%= cpp.getPedido().getPedidosId() %>"
+					data-toggle="tooltip" data-placement="top" title="Marcar como Entregado">
+						<span class="glyphicon glyphicon-warning-sign"></span>
+				</a>
+				<% 
+					}
+				%>
+				</td>
 			</tr>
 			<%
 				}

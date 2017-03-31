@@ -94,7 +94,7 @@ public class PedidoDao {
 			currentCon = dbConexion.getConnection(); 
 			//stmt=currentCon.createStatement(); 
 			//rs = stmt.executeQuery(searchQuery); 
-			String selectSQL = "select PEDIDO_ID, FECHA_PEDIDO,FECHA_ENTREGA,DESCRIPCION from PEDIDOS where PEDIDO_ID = ? ;";
+			String selectSQL = "select PEDIDO_ID, FECHA_PEDIDO,FECHA_ENTREGA,DESCRIPCION, ESTATUS from PEDIDOS where PEDIDO_ID = ? ;";
 			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, id);
 			//ResultSet rs = preparedStatement.executeQuery(selectSQL);

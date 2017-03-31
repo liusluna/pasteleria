@@ -42,9 +42,11 @@ public class ClipropedDao {
 				ProductoDao pdao = new ProductoDao();
 				PedidoDao pedao =  new PedidoDao();
 				
-				cliproped.setCliente( cdao.getOne(Integer.parseInt(rs.getString(2))));
+				cliproped.setProducto(pdao.getOne(Integer.parseInt(rs.getString(2))));
+				
 				cliproped.setPedido(pedao.getOne(Integer.parseInt(rs.getString(3))));
-				cliproped.setProducto(pdao.getOne(Integer.parseInt(rs.getString(4))));
+				
+				cliproped.setCliente(cdao.getOne(Integer.parseInt(rs.getString(4))));
 				//cliproped.setProducto_id(Integer.parseInt(rs.getString(2)));
 				//cliproped.setPedido_id(Integer.parseInt(rs.getString(3)));
 				//cliproped.setCliente_id(Integer.parseInt(rs.getString(4)));
