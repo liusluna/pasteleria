@@ -18,7 +18,7 @@
 				<label class="col-md-4 control-label" for="nombre">RFC</label>
 				<div class="col-md-4">
 					<input id="rfc" name="rfc" placeholder="RFC"
-						class="form-control input-md"  type="text" required  pattern="[A-Za-z0-9#.\s]{13}" maxlength="13"> <span
+						class="form-control input-md"  type="text" required  pattern="[A-Za-z0-9#.\s]{12}" maxlength="12"> <span
 						class="help-block">Escribe el RFC</span>
 				</div>
 			</div>
