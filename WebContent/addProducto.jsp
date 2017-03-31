@@ -28,7 +28,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="descripcion">Descripci&oacute;n</label>
 				<div class="col-md-4">
-					<input id="descripcion" name="descripcion" placeholder="Apellido Paterno"
+					<input id="descripcion" name="descripcion" placeholder="Descripción"
 						class="form-control input-md"  type="text" required  pattern="[A-Za-z0-9#.\s]{3,50}" maxlength="50"> <span
 						class="help-block">Escribe la descripcion del producto</span>
 				</div>
