@@ -29,8 +29,8 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="fecha">Fecha de entrega</label>
 				<div class="col-md-4">
-					<!--input id="venta" name="fecha" placeholder="Fecha de entrega" class="form-control input-md"  type="text" required  pattern="[A-Za-z0-9#.\s]{3,50}" --> 
-						<jsp:directive.include file="Calendar.jsp" />
+					<input id="venta" name="fecha" placeholder="Fecha de entrega" class="form-control input-md"  type="text" required  pattern="[A-Za-z0-9#.\s]{3,50}"> 
+						<!--  jsp:directive.include file="Calendar.jsp" /-->
 						<span
 						class="help-block">Escribe la Fecha de entrega en formato DIA-MES-AÑO ejemplo: 30-03-2017</span>
 				</div>
