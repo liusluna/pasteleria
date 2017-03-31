@@ -40,7 +40,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="hora">Hora de Entrega</label>
 				<div class="col-md-4">
-					<input id="costo" name="hora" placeholder="hora 0:0"
+					<input id="costo" name="hora" placeholder="Hora 0:0"
 						class="form-control input-md"  type="number" required  pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Formato Hora:Minutos"> <span
 						class="help-block">Escribe la Hora de entrega en formato Hora:Minutos 00:00</span>
 				</div>
