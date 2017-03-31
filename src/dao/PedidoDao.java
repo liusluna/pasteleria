@@ -113,8 +113,9 @@ public class PedidoDao {
 				pedido.setFechapedio( formato.parse(rs.getString(2))) ;
 				pedido.setFechaentrega(formato.parse(rs.getString(3)));
 				pedido.setDescripcion(rs.getString(4));
-				pedido.setEstatus(Boolean.parseBoolean(rs.getString(5)));
-				
+				pedido.setEstatus((Integer.parseInt(rs.getString(5))!=0));
+				//System.out.println("Pedido dao ! " +pedido.getDescripcion() +" Estado:"+ pedido.getEstatus() +" get "+ (Integer.parseInt(rs.getString(5))!=0) );
+				 
 			}
 		}catch (SQLException e) {
 			System.err.println("Pedido dao getOne: SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
