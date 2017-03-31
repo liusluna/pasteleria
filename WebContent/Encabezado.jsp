@@ -28,6 +28,8 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
+    <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" type="text/css">
+    
     <!-- Main CSS -->
     <link href="css/main.css" rel="stylesheet">
     
