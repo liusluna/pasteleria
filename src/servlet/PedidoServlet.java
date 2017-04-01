@@ -65,15 +65,10 @@ public class PedidoServlet extends HttpServlet {
 		PedidoDao pdao = new PedidoDao();
 		ArrayList<String> salida = new ArrayList<String>();
 		if (pdao.actualiza(Integer.parseInt(request.getParameter("pedido"))) ){
-			salida.add("Cliente agregado: ");
-			salida.add("de la base de datos");
-			request.setAttribute("info", salida);
-			request.setAttribute("tipo","info");
-			request.setAttribute("pagina","1");
-			request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+			request.getRequestDispatcher("Pedido?operacion=muestra&").forward(request, response);
 		}else {
-			salida.add("Cliente NO agregado");
-			salida.add("hubo un error al agregar cliente ");
+			salida.add("Pedido NO actualizdo");
+			salida.add("hubo un error al actualizar pedio ");
 			request.setAttribute("info", salida);
 			request.setAttribute("tipo","info");
 			request.setAttribute("pagina","1");

@@ -181,5 +181,44 @@ public class PedidoDao {
 		}	
 		return true;
 	}
+	
+	public boolean agrega(String fechaentrega, String Descripcion){
+		
+		Statement stmt = null; 
+		try { //connect to DB 
+			currentCon = dbConexion.getConnection();
+						
+			String insertSQL = "insert into PEDIDOS(FECHA_PEDIDO,FECHA_ENTREGA,DESCRIPCION,ESTATUS) values (NOW(),STR_TO_DATE(?),?,?,0)";
+			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(insertSQL);
+			
+			preparedStatement.setString(1, fechaentrega);
+			preparedStatement.setString(2, Descripcion);
+			preparedStatement.executeUpdate();
+			
+
+		}catch (SQLException e) {
+			System.err.println("Pedido dao agrega: SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
+		} catch (Exception ex) { 
+			System.out.println("Pedido dao agrega: An Exception has occurred! " + ex); 
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					System.out.println("Pedido dao agrega: An Exception has occurred! " + e);
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					System.out.println("Pedido dao agrega: An Exception has occurred! " + e);
+				}
+				stmt = null;
+			}
+		}	
+		return true;
+	}
 
 }
