@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -60,7 +61,25 @@ public class PedidoServlet extends HttpServlet {
 			
 				
 		//fin mostrar	
-		
+	}else if (request.getParameter("operacion").equals("actualiza")){
+		PedidoDao pdao = new PedidoDao();
+		ArrayList<String> salida = new ArrayList<String>();
+		if (pdao.actualiza(Integer.parseInt(request.getParameter("pedido"))) ){
+			salida.add("Cliente agregado: ");
+			salida.add("de la base de datos");
+			request.setAttribute("info", salida);
+			request.setAttribute("tipo","info");
+			request.setAttribute("pagina","1");
+			request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+		}else {
+			salida.add("Cliente NO agregado");
+			salida.add("hubo un error al agregar cliente ");
+			request.setAttribute("info", salida);
+			request.setAttribute("tipo","info");
+			request.setAttribute("pagina","1");
+			request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+		}
+	//fin actualiza	
 	}else{
 		Enumeration<?> params = request.getParameterNames(); 
 		while(params.hasMoreElements()){

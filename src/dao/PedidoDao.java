@@ -145,5 +145,41 @@ public class PedidoDao {
 		return pedido;
 	}
 	
+	public boolean actualiza(int id){
+		
+		Statement stmt = null; 
+		try { //connect to DB 
+			currentCon = dbConexion.getConnection();
+			
+			String updateSQL = "update PEDIDOS SET ESTATUS = 1  where PEDIDO_ID =  ? ;";
+			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(updateSQL);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			
+
+		}catch (SQLException e) {
+			System.err.println("Pedido dao actualiza: SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
+		} catch (Exception ex) { 
+			System.out.println("Pedido dao actualiza: An Exception has occurred! " + ex); 
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					System.out.println("Pedido dao actualiza: An Exception has occurred! " + e);
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					System.out.println("Pedido dao actualiza: An Exception has occurred! " + e);
+				}
+				stmt = null;
+			}
+		}	
+		return true;
+	}
 
 }
