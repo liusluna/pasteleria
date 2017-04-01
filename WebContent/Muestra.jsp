@@ -189,7 +189,7 @@
 
 			<%
 				} else if (tipo.equals("pedidos")) {
-					List<Cliproped> arra = (List<Cliproped>) misesion.getAttribute("pedidos");
+					List<Cliproped> arra = (List<Cliproped>) misesion.getAttribute("pedido");
 			%>
 		
 		<thead>
@@ -207,6 +207,7 @@
 
 			<%
 				 numeropag = (int) numeroPaginas(arra.size(), maxxpag);
+					if (arra.size()>0)
 					for (int i = registroInferior(maxxpag,
 							registrosuperior(arra.size(), pagina, maxxpag)); i < registrosuperior(arra.size(), pagina,
 									maxxpag); i++) {

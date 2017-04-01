@@ -83,18 +83,17 @@ public class ClipropedDao {
 	//  Tipo: 1 cliente.  2 pedidos, 3 productos
 	public Boolean dropCascadeClient(int id, int tipo){
 		Statement stmt = null; 
-		/*
-		if (this.getOne(id).equals(null)){
-			return false;
-		}
-		*/
+		String deleteSQL="";
 		try { //connect to DB 
 			currentCon = dbConexion.getConnection(); 
-			//stmt=currentCon.createStatement(); 
-			//rs = stmt.executeQuery(searchQuery); 
 			
-					
-			String deleteSQL = "DELETE FROM CLIENTES WHERE CLIENTE_ID = ? ;";
+			if (tipo==1)
+				deleteSQL = "DELETE FROM CLIPROPED WHERE CLIENTE_ID = ? ;";
+			else if (tipo == 2)
+				deleteSQL = "DELETE FROM CLIPROPED WHERE PEDIDO_ID = ? ;";
+			else
+				deleteSQL = "DELETE FROM CLIPROPED WHERE PRODUCTO_ID = ? ;";
+			
 			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(deleteSQL);
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();

@@ -54,7 +54,7 @@ public class PedidoServlet extends HttpServlet {
 				System.out.println("Error al intentar listar los clientes: " + e.getMessage());
 
 			} 
-				misesion.setAttribute("pedidos", lista);
+				misesion.setAttribute("pedido", lista);
 				request.setAttribute("tipo","pedidos");
 				request.setAttribute("pagina","1");
 				request.getRequestDispatcher("Muestra.jsp").forward(request, response);
@@ -77,7 +77,7 @@ public class PedidoServlet extends HttpServlet {
 		}
 	//fin actualiza	
 	}else if (request.getParameter("operacion").equals("agregar")){
-		//PedidoDao pdao = new PedidoDao();
+		
 		ClipropedDao cdao = new ClipropedDao();
 		
 		if ( cdao.agrega(request.getParameter("descripcion"), request.getParameter("fecha")+" "+request.getParameter("hora")+":00", Integer.parseInt(request.getParameter("cliente")), Integer.parseInt(request.getParameter("producto"))) ){
@@ -86,6 +86,22 @@ public class PedidoServlet extends HttpServlet {
 			ArrayList<String> salida = new ArrayList<String>();
 			salida.add("Pedido NO agregado");
 			salida.add("hubo un error al agregar el pedio ");
+			request.setAttribute("info", salida);
+			request.setAttribute("tipo","info");
+			request.setAttribute("pagina","1");
+			request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+		}
+	//fin agrega	
+	}else if (request.getParameter("operacion").equals("eliminar")){
+		//PedidoDao pdao = new PedidoDao();
+		PedidoDao pdao = new PedidoDao();
+		
+		if ( pdao.elimina(Integer.parseInt(request.getParameter("pedido"))) ){
+			request.getRequestDispatcher("Pedido?operacion=muestra&").forward(request, response);
+		}else {
+			ArrayList<String> salida = new ArrayList<String>();
+			salida.add("Pedido NO eliminado");
+			salida.add("hubo un error al eliminar el pedio ");
 			request.setAttribute("info", salida);
 			request.setAttribute("tipo","info");
 			request.setAttribute("pagina","1");

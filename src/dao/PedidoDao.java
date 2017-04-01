@@ -228,5 +228,45 @@ public class PedidoDao {
 		}	
 		return id;
 	}
+	
+	public Boolean elimina(int id){
+		Statement stmt = null;
+		ClipropedDao cppdao = new ClipropedDao();
+		//  Tipo: 1 cliente.  2 pedidos, 3 productos
+		if (cppdao.dropCascadeClient(id, 2).equals(null))
+			return false;
+		
+		try { //connect to DB 
+			currentCon = dbConexion.getConnection();
+			String updateSQL = "DELETE FROM PEDIDOS where PEDIDO_ID =  ? ;";
+			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(updateSQL);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			
+
+		}catch (SQLException e) {
+			System.err.println("Pedido dao actualiza: SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
+		} catch (Exception ex) { 
+			System.out.println("Pedido dao actualiza: An Exception has occurred! " + ex); 
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					System.out.println("Pedido dao actualiza: An Exception has occurred! " + e);
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					System.out.println("Pedido dao actualiza: An Exception has occurred! " + e);
+				}
+				stmt = null;
+			}
+		}	
+		return true;
+	}
 
 }

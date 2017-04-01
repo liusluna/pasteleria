@@ -202,6 +202,11 @@ public class ClienteDao {
 	public Boolean borra(int id) {
 		//List<Cliente> lista = new ArrayList<Cliente>(); 
 		Statement stmt = null; 
+		
+		ClipropedDao cppdao = new ClipropedDao();
+		//  Tipo: 1 cliente.  2 pedidos, 3 productos
+		if (cppdao.dropCascadeClient(id, 1).equals(null))
+			return false;
 	
 		if (this.getOne(id).equals(null)){
 			return false;
