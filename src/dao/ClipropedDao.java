@@ -128,4 +128,55 @@ public class ClipropedDao {
 		
 		return true;
 	}
+	
+	public Boolean agrega(String fechaentrega, String Descripcion,Integer id_cliente, Integer id_producto){
+		Statement stmt = null; 
+		Integer id_pedido;
+		try { //connect to DB 
+			currentCon = dbConexion.getConnection();
+			
+			PedidoDao pdao = new PedidoDao();
+			
+			id_pedido = pdao.agrega(fechaentrega, Descripcion);
+			
+			
+			String insertSQL = "insert into CLIPROPED(PRODUCTO_ID,PEDIDO_ID,CLIENTE_ID) VALUES(?,?,?);";
+			PreparedStatement preparedStatement = (PreparedStatement) currentCon.prepareStatement(insertSQL);
+			
+			preparedStatement.setInt(1, id_producto);
+			preparedStatement.setInt(2, id_pedido);
+			preparedStatement.setInt(3, id_cliente);
+			preparedStatement.executeUpdate();
+			
+		}catch (SQLException e) {
+				System.err.println("SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());
+				return (false);
+		} catch (Exception ex) { 
+			 System.out.println("Cliente dao borra: An Exception has occurred! " + ex); 
+			 return (false);
+		 } 
+			
+		finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					System.out.println("Cliente dao borra: An Exception has occurred! " + e);
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e) {
+					System.out.println("Cliente dao: An Exception has occurred! " + e);
+				}
+				stmt = null;
+			}
+		}	
+		
+		return true;
+
+	}
+	
 }

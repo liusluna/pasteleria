@@ -63,10 +63,11 @@ public class PedidoServlet extends HttpServlet {
 		//fin mostrar	
 	}else if (request.getParameter("operacion").equals("actualiza")){
 		PedidoDao pdao = new PedidoDao();
-		ArrayList<String> salida = new ArrayList<String>();
+		
 		if (pdao.actualiza(Integer.parseInt(request.getParameter("pedido"))) ){
 			request.getRequestDispatcher("Pedido?operacion=muestra&").forward(request, response);
 		}else {
+			ArrayList<String> salida = new ArrayList<String>();
 			salida.add("Pedido NO actualizdo");
 			salida.add("hubo un error al actualizar pedio ");
 			request.setAttribute("info", salida);
@@ -75,6 +76,22 @@ public class PedidoServlet extends HttpServlet {
 			request.getRequestDispatcher("Muestra.jsp").forward(request, response);
 		}
 	//fin actualiza	
+	}else if (request.getParameter("operacion").equals("agregar")){
+		//PedidoDao pdao = new PedidoDao();
+		ClipropedDao cdao = new ClipropedDao();
+		
+		if ( cdao.agrega(request.getParameter("descripcion"), request.getParameter("fecha")+" "+request.getParameter("hora")+":00", Integer.parseInt(request.getParameter("cliente")), Integer.parseInt(request.getParameter("producto"))) ){
+			request.getRequestDispatcher("Pedido?operacion=muestra&").forward(request, response);
+		}else {
+			ArrayList<String> salida = new ArrayList<String>();
+			salida.add("Pedido NO agregado");
+			salida.add("hubo un error al agregar el pedio ");
+			request.setAttribute("info", salida);
+			request.setAttribute("tipo","info");
+			request.setAttribute("pagina","1");
+			request.getRequestDispatcher("Muestra.jsp").forward(request, response);
+		}
+	//fin agrega	
 	}else{
 		Enumeration<?> params = request.getParameterNames(); 
 		while(params.hasMoreElements()){

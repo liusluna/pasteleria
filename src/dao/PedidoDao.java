@@ -182,8 +182,9 @@ public class PedidoDao {
 		return true;
 	}
 	
-	public boolean agrega(String fechaentrega, String Descripcion){
-		
+	public Integer agrega(String fechaentrega, String Descripcion){
+		Integer id=0;
+		ResultSet rs2 = null;
 		Statement stmt = null; 
 		try { //connect to DB 
 			currentCon = dbConexion.getConnection();
@@ -195,6 +196,12 @@ public class PedidoDao {
 			preparedStatement.setString(2, Descripcion);
 			preparedStatement.executeUpdate();
 			
+			String searchQuery = "SELECT last_insert_id();";
+			PreparedStatement preparedStatement2 = (PreparedStatement) currentCon.prepareStatement(searchQuery);
+			rs2 = preparedStatement2.executeQuery();
+			while (rs2.next()) {
+				id = Integer.parseInt(rs2.getString(1));
+			}
 
 		}catch (SQLException e) {
 			System.err.println("Pedido dao agrega: SQLError: " + e.getSQLState() + "\n"+e.getStackTrace());	
@@ -204,6 +211,7 @@ public class PedidoDao {
 			if (rs != null) {
 				try {
 					rs.close();
+					rs2.close();
 				} catch (Exception e) {
 					System.out.println("Pedido dao agrega: An Exception has occurred! " + e);
 				}
@@ -218,7 +226,7 @@ public class PedidoDao {
 				stmt = null;
 			}
 		}	
-		return true;
+		return id;
 	}
 
 }
